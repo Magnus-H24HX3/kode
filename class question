@@ -1,0 +1,23 @@
+class Question {
+  //atributer
+  String quest= "hvad er en byte";
+  String[] answers = new String [4];
+  int correctAnswer=2;
+  //konstuktør
+  Question() {
+    answers[0] = "svar 1";
+    answers[1] = "svar 2";
+    answers[2] = "svar 3";
+    answers[3] = "svar 4";
+  }
+  //metoder
+  String getQuest() {
+    return quest;
+  }
+  String[] getAnswers () {
+    return answers;
+  }
+  int getCorrectAnswer() {
+    return correctAnswer;
+  }
+}
