@@ -4,11 +4,13 @@ class Question {
   String[] answers = new String [4];
   int correctAnswer=2;
   //konstuktør
-  Question() {
-    answers[0] = "svar 1";
-    answers[1] = "svar 2";
-    answers[2] = "svar 3";
-    answers[3] = "svar 4";
+  Question(String question, String answer1, String answer2, String answer3, String answer4, int correctanswer) {
+    answers[0] = answer1;
+    answers[1] = answer2;
+    answers[2] = answer3;
+    answers[3] = answer4;
+    correctAnswer=correctanswer;
+    quest=question;
   }
   //metoder
   String getQuest() {
