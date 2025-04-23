@@ -1,4 +1,6 @@
-class Answer {
+class Answer { //definerer en ny klasse, som bruges til at repræsentere en klikbar knap
+
+  //fire variabler beskriver en rektangel
   int x;
   int y;
   int w;
@@ -11,7 +13,9 @@ class Answer {
     this.h = h;
   }
 
-  boolean isPointInside(int px, int py) {
+  boolean isPointInside(int px, int py) { //tjekker om musens position er inde i knappen
     return (px > x && px < x+w) && (py > y && py < y+h);
+    //px = musens x-position
+    //py = musens y-position
   }
 }
