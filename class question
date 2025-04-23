@@ -1,4 +1,4 @@
-class Question {
+class Question { //definerer en ny klasse i Processing (Java), kaldet Question
   //atributer
   String quest= "hvad er en byte";
   String[] answers = new String [4];
@@ -14,12 +14,12 @@ class Question {
   }
   //metoder
   String getQuest() {
-    return quest;
+    return quest; // Returnerer spørgsmålet (tekst)
   }
   String[] getAnswers () {
-    return answers;
+    return answers; //Returnerer alle fire svar i et array
   }
   int getCorrectAnswer() {
-    return correctAnswer;
+    return correctAnswer; //Returnerer index-værdien for det korrekte svar (0-3)
   }
 }
