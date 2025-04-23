@@ -1,15 +1,15 @@
-int questionnumber;
-Answer[]Answr;
-Question[]questions;
-int correctanswers;
-int counter;
-boolean showsanswer;
-int selectedanswer;
+int questionnumber;  // Hvilket spørgsmål brugeren er nået til
+Answer[]Answr; // Array af svar-knapper (objekter)
+Question[]questions; // Array med spørgsmål (og tilhørende svar)
+int correctanswers;  // Hvor mange rigtige svar brugeren har fået
+int counter;  // Bruges til at vise svaret i kort tid
+boolean showsanswer; // Om svaret skal vises (true/false)
+int selectedanswer; // Hvilket svar brugeren valgte
 void setup() {
-  size(800, 600);
+  size(800, 600);   // Sætter vinduets størrelse
   textSize(20);
   fill(0);
-  questions=new Question[]{
+  questions=new Question[]{ // Initialiserer spørgsmål og svarmuligheder
     new Question("Hvad bruges setup() funktionen til i Processing?", "At tegne figurer", "At initialisere variabler og sætte skærmstørrelse", "At afslutte programmet", "At afspille lyd", 1),
     new Question("Hvad gør size(800, 600) i en sketch?", "Sætter farven på baggrunden", "Bestemmer tykkelsen på linjer", "Sætter vinduets bredde og højde til 800 x 600 pixels", "Zoomer ind på skærmen", 2),
     new Question(" Hvad er forskellen på fill() og stroke() i Processing", "fill() farver baggrunden, stroke() slukker programmet", "fill() fjerner tekst, stroke() fjerner billeder", "fill() bruges til figurers inderside, stroke() til kanten", "De gør det samme", 2),
@@ -31,7 +31,7 @@ void setup() {
     new Question("Hvordan tegner man en rektangel uden kant?", "noBorder()", "noStroke()", "noEdge()", "stroke(0)", 1),
     new Question("Hvordan kan man få en figur til at bevæge sig over tid?", "Ved at placere den i setup()", "Ved at bruge delay()", "Ved at ændre dens position i draw()", "Ved at tegne den med print()", 2),
 
-  };
+  };  // Initialiserer fire svar-knapper
   Answr=new Answer[]{
     new Answer(width/2-75/2-50, 180, 75, 25),
     new Answer(width/2-75/2+50, 180, 75, 25),
@@ -40,12 +40,12 @@ void setup() {
   };
 }
 void draw() {
-  background(0, 162, 232);
+  background(0, 162, 232); // Blå baggrund
   if (questionnumber<questions.length) {
     textAlign(CENTER, CENTER);
-    text( questions[questionnumber].getQuest(), width/2, 100);
-    displayAnswers();
-    if (counter>0) {
+    text( questions[questionnumber].getQuest(), width/2, 100); // Vis spørgsmålet
+    displayAnswers();   // Vis svarmuligheder
+    if (counter>0) {   // Vis korrekt/forkert farve i kort tid
       counter-=1;
       if (counter==0) {
         questionnumber+=1;
@@ -53,10 +53,11 @@ void draw() {
       }
     }
   } else {
+
     background(0, 162, 255);
     textAlign(CENTER, CENTER);
-    text( "quiz slut", width/2, height/2);
-    text( "antal rigtige"+correctanswers+"/"+questions.length, width/2, height/2+50);
+    text( "quiz slut", width/2, height/2);   // Quiz er slut
+    text( "antal rigtige"+correctanswers+"/"+questions.length, width/2, height/2+50); //vis resultat
   }
 }
 //funktion
@@ -64,20 +65,20 @@ void displayAnswers() {
   //String[] answers=question.getAnswers();
   int i=0;
   for (Answer answer : Answr) {
-    fill(255);
+    fill(255);// Hvid baggrund for svar kasserne
     if (answer.isPointInside(mouseX, mouseY)) {
-      fill(227);
+      fill(227);// Lysere baggrund, hvis musen er over
     }
-    if (showsanswer==true) {
+    if (showsanswer==true) {  // om svaret skal vises
       if (selectedanswer==i) {
         if (selectedanswer==questions [questionnumber]. getCorrectAnswer()) {
-          fill (0, 155, 0);
+          fill (0, 155, 0); // Grønt – korrekt
         } else {
-          fill(255, 0, 0);
+          fill(255, 0, 0); // Rødt – forkert
         }
       }
     }
-    rect(answer.x, answer.y, answer.w, answer.h);
+    rect(answer.x, answer.y, answer.w, answer.h); 
     fill(0);
     text(questions[questionnumber].getAnswers()[i], answer.x+answer.w/2, answer.y+answer.h/2);
     i++;
@@ -86,13 +87,13 @@ void displayAnswers() {
 void mousePressed() {
   for (int i = 0; i < Answr.length; i++) {
     if (Answr[i].isPointInside(mouseX, mouseY)) {
-      println(i);
+      println(i);   // Udskriv hvilket svar brugeren klikkede på
       if (questionnumber+1<questions.length+1) {
-        counter=30;
+        counter=30;   // Start en lille "pause" på 30 frames så folk kan se om det er forkert eller rigtig
         selectedanswer=i;
         showsanswer=true;
         if (questions[questionnumber].getCorrectAnswer()==i) {
-          correctanswers+=1;
+          correctanswers+=1; // Hvis korrekt, giv point
         }
       }
     }
